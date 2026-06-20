@@ -1,0 +1,28 @@
+Options -Indexes
+
+# Deny access to sensitive directories
+<FilesMatch "\.(sql|md|log|env)$">
+    Require all denied
+</FilesMatch>
+
+# Protect config and classes
+RedirectMatch 403 ^/vikoba/config/
+RedirectMatch 403 ^/vikoba/classes/
+RedirectMatch 403 ^/vikoba/includes/
+RedirectMatch 403 ^/vikoba/database/
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Remove trailing slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Serve static files directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Security Headers
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-XSS-Protection "1; mode=block"

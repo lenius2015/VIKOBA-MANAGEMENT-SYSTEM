@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — Vikoba Management System</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
+  <link rel="stylesheet" href="http://localhost/vikoba/public/css/style.css"/>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <i class="ti ti-building-bank fs-4 me-2"></i>
+    <div>
+      <div class="brand-name">VIKOBA</div>
+      <div class="brand-sub">Management System</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+          <!-- ADMIN / TREASURER NAVIGATION -->
+      <div class="nav-section">Main Menu</div>
+      <a href="http://localhost/vikoba/pages/dashboard.php" class="nav-link active">
+        <i class="ti ti-dashboard"></i> Dashboard
+      </a>
+      <a href="http://localhost/vikoba/pages/members.php" class="nav-link ">
+        <i class="ti ti-users"></i> Members
+      </a>
+      <a href="http://localhost/vikoba/pages/contributions.php" class="nav-link ">
+        <i class="ti ti-coins"></i> Contributions
+      </a>
+      <a href="http://localhost/vikoba/pages/loans.php" class="nav-link ">
+        <i class="ti ti-credit-card"></i> Loans
+      </a>
+      <a href="http://localhost/vikoba/pages/fines.php" class="nav-link ">
+        <i class="ti ti-alert-triangle"></i> Fines
+      </a>
+
+            <div class="nav-section">Communication</div>
+      <a href="http://localhost/vikoba/pages/notifications.php" class="nav-link ">
+        <i class="ti ti-bell"></i> Notifications
+              </a>
+      <a href="http://localhost/vikoba/pages/messages.php" class="nav-link ">
+        <i class="ti ti-messages"></i> Messages
+              </a>
+      
+            <div class="nav-section">Management</div>
+      <a href="http://localhost/vikoba/pages/reports.php" class="nav-link ">
+        <i class="ti ti-chart-bar"></i> Reports
+      </a>
+      
+            <a href="http://localhost/vikoba/pages/users.php" class="nav-link ">
+        <i class="ti ti-settings"></i> Users
+      </a>
+            </nav>
+
+  <div class="sidebar-footer">
+    <div class="d-flex align-items-center gap-2">
+      <div class="avatar-circle">SY</div>
+      <div>
+        <div class="fw-500 fs-13">System Admin</div>
+        <div class="text-muted fs-11">
+          <span class="badge badge-primary">Admin</span>
+                  </div>
+      </div>
+    </div>
+    <a href="http://localhost/vikoba/pages/logout.php" class="btn btn-sm btn-outline-secondary mt-2 w-100">
+      <i class="ti ti-logout me-1"></i>Logout
+    </a>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main-content">
+  <!-- Topbar -->
+  <div class="topbar">
+    <button class="btn btn-sm sidebar-toggle d-md-none" onclick="document.getElementById('sidebar').classList.toggle('open')">
+      <i class="ti ti-menu-2"></i>
+    </button>
+    <h5 class="mb-0">Dashboard</h5>
+    <div class="d-flex align-items-center gap-2">
+      <!-- Notifications Bell -->
+      <div class="dropdown" id="notifDropdown">
+        <button class="btn btn-sm btn-icon position-relative" data-bs-toggle="dropdown" aria-expanded="false" style="background:transparent;border:none;font-size:22px;color:#555;">
+          <i class="ti ti-bell"></i>
+          <span id="notifBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:9px;display:none">
+            0          </span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end notif-dropdown" style="width:340px;padding:0;">
+          <div class="dropdown-header d-flex justify-content-between align-items-center py-2 px-3" style="background:#f8f8f6;border-radius:8px 8px 0 0;">
+            <strong>Notifications</strong>
+            <a href="http://localhost/vikoba/pages/notifications.php" class="fs-12">View All</a>
+          </div>
+          <div id="notifList" style="max-height:300px;overflow-y:auto;">
+                          <div class="text-center py-4 text-muted">
+                <i class="ti ti-bell-off" style="font-size:24px;"></i>
+                <p class="mb-0 fs-12 mt-1">No new notifications</p>
+              </div>
+                      </div>
+          <div class="dropdown-footer text-center py-2" style="border-top:1px solid #eee;">
+            <a href="http://localhost/vikoba/pages/notifications.php?mark_all=1" class="fs-12 text-muted">Mark all as read</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Icon -->
+      <a href="http://localhost/vikoba/pages/messages.php" class="btn btn-sm btn-icon position-relative" style="background:transparent;border:none;font-size:22px;color:#555;text-decoration:none;">
+        <i class="ti ti-messages"></i>
+        <span id="msgBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:9px;display:none">
+          0        </span>
+      </a>
+
+      <span class="text-muted fs-12 mx-1">Thursday, 18 Jun 2026</span>
+      <span class="badge bg-success">Live</span>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div class="px-4 pt-3">
+      </div>
+
+  <div class="content-area">
+<!-- Stats row -->
+<div class="row g-3 mb-4">
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="stat-label"><i class="ti ti-users me-1"></i>Total Members</div>
+      <div class="stat-value">7</div>
+      <div class="stat-sub">6 active</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="stat-label"><i class="ti ti-coins me-1"></i>Total Contributions</div>
+      <div class="stat-value">Tsh 1,300,000.00</div>
+      <div class="stat-sub">7 records</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="stat-label"><i class="ti ti-credit-card me-1"></i>Loans Disbursed</div>
+      <div class="stat-value">Tsh 2,200,000.00</div>
+      <div class="stat-sub">3 active, 2 pending</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="stat-label"><i class="ti ti-alert-triangle me-1"></i>Pending Fines</div>
+      <div class="stat-value">Tsh 120,000.00</div>
+      <div class="stat-sub">3 unpaid</div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <!-- Recent Contributions -->
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <strong>Recent Contributions</strong>
+        <a href="http://localhost/vikoba/pages/contributions.php" class="btn btn-sm btn-outline-secondary">View All</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead><tr><th>Member</th><th>Amount</th><th>Method</th><th>Date</th></tr></thead>
+          <tbody>
+                      <tr>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="avatar-circle">LE</div>
+                  LENIUS TIZANGA                </div>
+              </td>
+              <td>Tsh 1,000,000.00</td>
+              <td><span class="badge badge-primary">Bank transfer</span></td>
+              <td>2026-06-19</td>
+            </tr>
+                      <tr>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="avatar-circle">DA</div>
+                  Daniel Mushi                </div>
+              </td>
+              <td>Tsh 50,000.00</td>
+              <td><span class="badge badge-primary">Mobile money</span></td>
+              <td>2024-02-14</td>
+            </tr>
+                      <tr>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="avatar-circle">AM</div>
+                  Amina Hassan                </div>
+              </td>
+              <td>Tsh 50,000.00</td>
+              <td><span class="badge badge-primary">Cash</span></td>
+              <td>2024-02-12</td>
+            </tr>
+                      <tr>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="avatar-circle">FA</div>
+                  Fatuma Said                </div>
+              </td>
+              <td>Tsh 50,000.00</td>
+              <td><span class="badge badge-primary">Bank transfer</span></td>
+              <td>2024-02-10</td>
+            </tr>
+                      <tr>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="avatar-circle">GR</div>
+                  Grace Kimaro                </div>
+              </td>
+              <td>Tsh 50,000.00</td>
+              <td><span class="badge badge-primary">Cash</span></td>
+              <td>2024-01-15</td>
+            </tr>
+                      <tr>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="avatar-circle">JO</div>
+                  John Mwanga                </div>
+              </td>
+              <td>Tsh 50,000.00</td>
+              <td><span class="badge badge-primary">Mobile money</span></td>
+              <td>2024-01-12</td>
+            </tr>
+                    </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loan Overview -->
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <strong>Loan Overview</strong>
+        <a href="http://localhost/vikoba/pages/loans.php" class="btn btn-sm btn-outline-secondary">View All</a>
+      </div>
+      <div class="card-body">
+                <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fs-13">Fatuma Said <span class="text-muted fs-11">(LN-006)</span></span>
+            <span class="badge badge-primary">Active</span>          </div>
+          <div class="fs-11 text-muted mb-1">Tsh 0.00 / Tsh 1,380,000.00 repaid</div>
+          <div class="progress"><div class="progress-bar" style="width:0%"></div></div>
+        </div>
+                <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fs-13">Amina Hassan <span class="text-muted fs-11">(LN-001)</span></span>
+            <span class="badge badge-primary">Active</span>          </div>
+          <div class="fs-11 text-muted mb-1">Tsh 150,000.00 / Tsh 345,000.00 repaid</div>
+          <div class="progress"><div class="progress-bar" style="width:43%"></div></div>
+        </div>
+                <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fs-13">John Mwanga <span class="text-muted fs-11">(LN-002)</span></span>
+            <span class="badge badge-primary">Active</span>          </div>
+          <div class="fs-11 text-muted mb-1">Tsh 80,000.00 / Tsh 230,000.00 repaid</div>
+          <div class="progress"><div class="progress-bar" style="width:35%"></div></div>
+        </div>
+                <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fs-13">Grace Kimaro <span class="text-muted fs-11">(LN-003)</span></span>
+            <span class="badge badge-success">Completed</span>          </div>
+          <div class="fs-11 text-muted mb-1">Tsh 575,000.00 / Tsh 575,000.00 repaid</div>
+          <div class="progress"><div class="progress-bar" style="width:100%"></div></div>
+        </div>
+                <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fs-13">Fatuma Said <span class="text-muted fs-11">(LN-004)</span></span>
+            <span class="badge badge-warning">Pending</span>          </div>
+          <div class="fs-11 text-muted mb-1">Tsh 0.00 / Tsh 172,500.00 repaid</div>
+          <div class="progress"><div class="progress-bar" style="width:0%"></div></div>
+        </div>
+              </div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /content-area -->
+</div><!-- /main-content -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="http://localhost/vikoba/public/js/app.js"></script>
+</body>
+</html>

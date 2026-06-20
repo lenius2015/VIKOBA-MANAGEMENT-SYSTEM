@@ -1,0 +1,5 @@
+# Protect uploaded files - disable script execution and directory listing
+Options -Indexes
+<FilesMatch "\.(php|phtml|phar)$">
+  Require all denied
+</FilesMatch>
